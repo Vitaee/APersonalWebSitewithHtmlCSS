@@ -1,0 +1,430 @@
+*,
+*::before,
+
+*::after {
+  box-sizing: border-box;  /*kutu boyutlandırma sınır kutumu ayarlamak için*/
+}
+
+ /* Bu kısmı kendiniz dilediğinizce değişikler yapabilirsiniz */
+:root {
+ /* Google Fonts */
+  --ff-primary: 'Source Sans Pro', sans-serif;
+  --ff-secondary: 'Source Code Pro', monospace;
+
+  /* font genişliği ve büyüklüğü ayarı */
+  --fw-reg: 300; /* Hi I am yazısının ayarı */
+  --fw-bold: 900; /* Can İlgu yazısının ayarı */
+
+ /* renk ayarları */
+ /* fff ayarı yazılarımızın bir resim önünde sergilenmesi
+ için gerekli */
+  --clr-light: #fff;
+  --clr-dark: #303030; /*Who I am yazısı */
+  /*30 değerini arttırdıkça yazı koyu siyah renkten açık renge dönüşüyor*/
+  --clr-accent: #16e0bd;
+/*What I do, My Work butonu , back-end dev, coder dev.
+yazılarının arka plan renk ayarı*/
+
+/* başlık ve yazılarımızın boyutları */
+/*--fs-h1 diyerek çağırabiliyoruz.*/
+  --fs-h1: 3rem; /*bu başlıkları zaten html içerisinde tanımlamıştı. */
+  --fs-h2: 2.25rem; /*ama standart bir ayarı vardı bizde bu ayarı */
+  --fs-h3: 1.25rem;  /*burda özelleştirebiliyoruz.*/
+  --fs-body: 1rem;
+
+/* küçülen resmimizin gölge ayarı */
+  --bs: 0.25em 0.25em 0.75em rgba(0,0,0, .25),
+        0.125em 0.125em 0.25em rgba(0,0,0,.15);
+
+}
+
+/* ekran boyutu değişikliği olursa başlık ve yazılarımızın
+boyutunu yeniden ayarlıyoruz. */
+
+@media (min-width: 800px) { /*Who I am altında bulunan resim boyutu*/
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
+
+  }
+}
+
+/* Genel stil ayarları */
+
+body {
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  margin: 0;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* Portfolio fotoğraflarından sonra ki bırakıklması istenen boşluk ayarı*/
+/* Ayrıca intro kısmında bulunan yazı ve fotoğraflar arasındaki boşluk ayarı*/
+section {
+  padding: 5em 2em;
+}
+
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+strong {font-weight: var(--fw-bold)}
+
+/*Butonlar 8.bölüm içeriği*/
+/*yazılarımızın hemen altında bulunan buton için
+genel ayarlamalar */
+
+/* Butonumuzu TAB tuşu ile seçilebilir yapıyoruz ayrcı seçildiğinde
+etrafında turkuaz renginde bir dikdörtgenin belirmesini sağlıyoruz */
+:focus {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5em 2.5em;
+  background: var(--clr-accent);
+  color: var(--clr-dark);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  transition: transform 200ms ease-in-out;
+}
+
+/* mouse imleci ile buton üzerine geldiğinde butonu daha belirgin yapıyoruz */
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/*8. bölüm için son */
+
+h1,
+h2,
+h3 {
+  line-height: 1;
+  margin: 0;
+
+}
+
+h1 {font-size: var(--fs-h1) }
+h2 {font-size: var(--fs-h2) }
+h3 {font-size: var(--fs-h3) }
+
+/*6. Bölüm */
+.section__title{
+  margin-bottom: .25em;
+}
+.section__title--intro{
+  font-weight: var(--fw-reg);
+}
+.section__title--intro strong {
+  display: block;
+}
+.section__subtitle {
+   margin: 0;
+   font-size: var(--fs-h3);
+}
+.section__subtitle--intro,
+.section__subtitle--about
+{
+   background: var(--clr-accent);
+   padding: .25em 1em;
+   font-family: var(--ff-secondary);
+   margin-bottom: 1em;
+}
+
+/*10.Bölüm */
+.section__subtitle--work {
+  color: var(--clr-accent);
+  font-weight: var(--fw-bold);
+  margin-bottom: 2em;
+
+}
+/*10. bölüm */
+
+ /* 7.bölüm
+header kısmı
+Bu komutla beraber liste halinde olan linklerimizi
+Görünümünü gizledik */
+nav { display: none;}
+
+/* Intro bölümü */
+.intro {
+  position: relative;
+}
+
+/* Resmimizin arkadasına biraz gölge efekti ekleyelim */
+.intro__img {
+  box-shadow: var(--bs);
+}
+
+.section__subtitle--intro {
+    display: inline-block;
+}
+
+/*İntro bölümündeki fotoğrafımızı yeniden boyutlandırıyoruz.*/
+/*ve bazı düzenlemeler yapıyoruz. */
+@media (min-width: 600px) {
+  .intro {
+    display: grid;
+    width: min-content;
+    margin: 0 auto;
+    grid-column-gap: 1em;
+    grid-template-areas:
+        "img tite"
+        "img subtitle";
+
+    grid-template-columns: min-content max-content;
+  }
+  .intro__img{
+    grid-area: img;
+    min-width: 250px;
+    /* çizgiyi arkaya almak */
+    position: relative;
+    z-index: 2;
+  }
+
+/*back-end dev  yazısını düzenleyelim */
+  .section__subtitle--intro {
+    align-self: start;
+    grid-column: -1 / 1;
+    grid-row: 2;
+    text-align: right;
+    position: relative;
+    left: -1.5em;
+    width: calc(100% + 1.5em);
+  }
+}
+
+/* Genel olarak renk ayarları yapıyoruz bu kısımda */
+/*Servisler(What I do) kısmınının stil görünüm ayarları 7.bölüm */
+.my-services {
+  /* yazıların arkasında olacak olan arka plan rengini belirledik */
+  /* arka plan rengini belirleyip daha sonra resmimizi eklemek daha sağlıklı olacaktır*/
+  background-color: var(--clr-dark);
+  /*css de arka plan fotoğrafı eklemek */
+  background-image: url(../img/servisler-bg.jpg);
+  /*fotoğrafın boyutunu ayarlıyoruz */
+  background-size: cover;
+  color: var(--clr-light);
+  /*büyük veya küçük ekranlar için yazılarımızı ortalıyoruz*/
+  text-align: center;
+}
+
+/*What I Do başlığımızın rengini ve pozisyonunu düzenliyoruz */
+.section__title--services {
+  color: var(--clr-accent);
+  position: relative;
+
+}
+
+/*yazılarmızın konumu ve boyutu için ayarlar */
+.section__title--services::after {
+  content: '';
+  display: block;
+  /*What I do başlığının altında bulunan çizginin genişlik ve uzunluk ayarı*/
+  width: 2em;
+  height: 1px;
+  margin: 0.5em auto 1em;
+  /*What I Do yazımızın altında ki çizginin renk ayarı*/
+  background: var(--clr-light);
+  opacity: 0.25;
+}
+/*8.bölüm için*/
+/*açıklayıcı yazılarımız ile My Work butonu ile aralarındaki boşluğu
+ayarlıyoruz */
+.services {
+  margin-bottom: 4em;
+
+}
+/* 8. bölüm içeriği*/
+
+/*Açıklama kısmında bulunan yazılarımızın küçük/büyük ekran için ayarları*/
+.service {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/*Arka planda bulunan fotoğrafımızın ayarları */
+@media (min-width: 800px) {
+  .services {
+    display: flex;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service + .service {
+    margin-left: 2em;
+
+  }
+}
+
+/*Who I am kısmı */
+.services {
+    margin-bottom: 4em;
+}
+
+/*Who I am yazı ayarları */
+.service {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+@media (min-width: 800px) {
+    .services {
+      /*what ı do kısmındaki resmin ayarı flex ve 1000px olmalı*/
+        display: flex;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .service + .service {
+        margin-left: 2em;
+    }
+}
+
+
+/* Who I Am */
+.about-me {
+  /* bir arada güzel görünüm için 1000 px yazıyoruz */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.about-me__img {
+  /*resmimizin arkasına gölge ekledik */
+    box-shadow: var(--bs);
+}
+@media (min-width: 600px) {
+    .about-me {
+        display: grid;
+        /*who ı am kısmının ayarı */
+        grid-template-columns: 1fr 235px;
+      /* yazıların , resimlerin düzenli durması için */
+        grid-template-areas:
+            "title img"
+            "subtitle img"
+            "text img";
+
+        /*My work yazısı ile aralarında ki boşluk */
+        grid-column-gap: 2em;
+    }
+
+   .section__title--about {
+        grid-area: title;
+    }
+    .section__subtitle--about {
+      /* Who I am başlığının durması gerek yer */
+        grid-column: 1 / -1;
+      /* arka plan çizgimizin duracağı kısım */
+        grid-row: 2;
+        position: relative;
+
+        /* 2 paragrafın ve fotoğrafımızın birbirine değmemsini sağlıyoruz.*/
+        left: -1em;
+        width: calc(100% + 2em);
+        padding-left: 1em;
+        padding-right: calc(200px + 4em);
+    }
+
+/* başlığımızın , yazılarımızın ve fotoğrafımızın
+düzenli bir şekilde durması için gerekli ayarlar */
+    .about-me__img {
+        grid-area: img;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+
+/*Portfolio My Work kısmı */
+.my-work {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  text-align: center;
+}
+
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.portfolio__item {
+  background: var(--clr-accent);
+  overflow: hidden;
+}
+
+.portfolio__img {
+  transition:
+      transform 750ms cubic-bezier(.5, 0, .5, 1),
+      opacity 250ms linear;
+}
+
+.portfolio__item:focus {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio__img:hover,
+.portfolio__item:focus .portfolio__img {
+  transform: scale(1.2);
+  opacity: .5;
+}
+
+
+/*Footer sosyal medya ikonları */
+
+.footer {
+  background: #111;
+  color: var(--clr-accent);
+  text-align: center;
+  padding: 2.5em 0;
+  font-size: var(--fs-h3);
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer__link {
+  font-weight: var(--fw-bold);
+}
+
+
+.footer__link:hover,
+.social-list__link:hover {
+  opacity: .8;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+.social-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 0;
+  padding: 0;
+}
+
+.social-list__item {
+  margin: 0 .5em;
+}
+
+.social-list__link {
+  padding: .3em;
+}
